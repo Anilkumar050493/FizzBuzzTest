@@ -1,0 +1,36 @@
+﻿@model IEnumerable<string>
+
+<h2>FizzBuzz</h2>
+
+@using (Html.BeginForm("ProcessArray", "Home", FormMethod.Post))
+{
+    <div>
+        <label for="numbers">Enter numbers (comma-separated):</label>
+        <input type="text" name="numbers" id="numbers" required />
+    </div>
+
+    <button type="submit">Search</button>
+}
+
+<h3>Results:</h3>
+<table style=" border:solid">
+    <thead>
+        <tr style=" border:solid">
+            <th style=" border:solid">Number</th>
+            <th style=" border:solid">Result</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.NumberResultPairs != null)
+        {
+            var numberResultPairs = ViewBag.NumberResultPairs as List<(string Number, string Result)>;
+            foreach (var pair in numberResultPairs)
+            {
+                <tr style=" border:solid">
+                    <td style=" border:solid">@pair.Number</td>
+                    <td style=" border:solid">@pair.Result</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
